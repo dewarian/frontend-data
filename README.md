@@ -51,7 +51,8 @@ This project wouldn't have been possible without help from others, throughout th
 |[@Razpudding](https://github.com/razpudding)|Laurens for being the coordinator/ lecturer for this course.|
 |[@dandevri](https://github.com/dandevri)|Danny for being the lecturer for this course.|
 |[@roberrrt-s](https://github.com/roberrrt-s)|Robert for being the lecturer for this course.|
-|@user| their contribution|
+|[@sjagoori](https://github.com/sjagoori)|Shabier for helping me setup this project.|
+
 
 ---
 Nextjs boilerplate
