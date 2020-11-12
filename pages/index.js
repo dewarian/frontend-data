@@ -22,11 +22,15 @@ async matchData() {
       const vehicleData = await Axios.get('https://opendata.rdw.nl/resource/m9d7-ebf2.json?$$app_token=LJJQ0jJhibQnVu2Blj8el7nEE').then(response => response.data);
       const fuelTypeData = await Axios.get('https://opendata.rdw.nl/resource/8ys7-d773.json?$$app_token=LJJQ0jJhibQnVu2Blj8el7nEE').then(response => response.data);
       // map > find > filter
-      const result = vehicleData.map((vehicle) => {
-        combineData = fuelTypeData.find(() => {
-          vehicle.kenteken == fuelTypeData.kenteken
-        });
-        return vehicle 
+      const vehicles = await vehicleData;
+      const vehicleFuelType = await fuelTypeData;
+
+      const result = vehicles.map((vehicle) => {
+        const combineData = vehicleFuelType.find(() =>
+          vehicles.kenteken == vehicleFuelType.kenteken
+        );
+        vehicle["brandstof"] = combineData;
+        return vehicle
       })
       return await result;
     }
@@ -47,10 +51,14 @@ async matchData() {
         })
       });
 
-      const test = this.matchData()
-      console.log(test)
-      console.log(fuelTypeData)
-      console.log(specificdata)
+      this.matchData()
+        .then((result) =>{
+          console.log(result);
+        })
+      // console.log(fuelTypeData)
+      // console.log(specificdata)
+
+
     //   mixedData.then((result) => {
     //     result.forEach(element => {
     //       specificData.push({
