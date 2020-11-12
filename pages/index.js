@@ -31,18 +31,33 @@ export default class Index extends React.Component {
 
       let parkingSpaces = await this.getData('https://opendata.rdw.nl/resource/m9d7-ebf2.json')
       // console.log(filterDataOnColumn(parkingSpaces, 'kenteken'))
-      const mixedData = combineDatasets()
+      let mixedData = combineDatasets()
+      const specificData = [];
       mixedData.then((result) => {
-        console.log(result[0])
+        let newArray = [];
+        result.forEach(element => {
+          specificData.push({
+            merk: element.merk,
+            kenteken: element.kenteken.kenteken,
+            soort: element.voertuigsoort,
+            brandstof: element.kenteken.brandstof_omschrijving,
+            taxi: element.taxi_indicator
+          })
+        })
+        mixedData = specificData;
+        console.log(specificData)
+      })
+      mixedData.then(result => {
+        result.map(key => console.log(key.merk, key.kenteken))
       })
 
       async function combineDatasets() {
-        const vehicleData = await fetch('https://opendata.rdw.nl/resource/m9d7-ebf2.json');
-        const fuelTypeData = await fetch('https://opendata.rdw.nl/resource/8ys7-d773.json');
-  
-        const vehicles = await vehicleData.json();
-        const fuelType = await fuelTypeData.json();
-  
+        const vehicleData = await Axios.get('https://opendata.rdw.nl/resource/m9d7-ebf2.json?$$app_token=LJJQ0jJhibQnVu2Blj8el7nEE').then(response => response.data);
+        const fuelTypeData = await Axios.get('https://opendata.rdw.nl/resource/8ys7-d773.json?$$app_token=LJJQ0jJhibQnVu2Blj8el7nEE').then(response => response.data);
+
+        const vehicles = await vehicleData;
+        const fuelType = await fuelTypeData;
+
         const result = vehicles.map((vehicle) => {
           const combineData = fuelType.find(() =>
             vehicles.kenteken == fuelType.kenteken
@@ -54,14 +69,12 @@ export default class Index extends React.Component {
       }
 
     }
-
-
     render() {
-      const resultView = <div >
-        <h1 > My shitty data < /h1> <
+      const resultView = <div>
+        <h1> My shitty data < /h1> <
         div id = "barchart" > < /div> <
         /div>
-      const loadView = < div > < h1 > Loading < /h1> </div >
+      const loadView = <div> <h1> Loading </h1> </div>
 
         return ( <> {
             this.state.data.state ? resultView : loadView
