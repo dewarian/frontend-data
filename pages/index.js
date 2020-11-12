@@ -1,65 +1,51 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+import React from 'react'
+import Axios from 'axios'
+// import { barchart } from '../modules/charts'
+// import { filterDisabled } from '../modules/util'
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+export default class Index extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: {
+        state: true,
+        results: ['loading']
+      }
+    }
+  }
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+  /**
+  * Funtion makes a GET request to given url 
+  * @param {String} url - API endpoint
+  */
+  async getData(url) {
+    return await Axios.get(url).then(response => response.data)
+  }
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+  async componentDidMount() {
+    console.warn('mounted')
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+    let parkingSpaces = await this.getData('https://opendata.rdw.nl/resource/m9d7-ebf2.json')
+    console.log(parkingSpaces)
+    // let disabledAreas = filterDisabled(parkingSpaces, 1)
+    
+    // // Piechart
+    // let totalDisabledSpaces = disabledAreas.length
+    // let totalNormalSpaces = parkingSpaces.length
+    // console.log(totalNormalSpaces)
+  }
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+  render() {
+    const resultView = <div>
+      {/* <h1>Hello world!</h1> */}
+      <div id="barchart"></div>
     </div>
-  )
+    const loadView = <div> <h1>Loading</h1> </div>
+
+    return (
+      <>
+        { this.state.data.state ? resultView : loadView}
+      </>)
+  }
 }
