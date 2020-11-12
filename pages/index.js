@@ -1,4 +1,3 @@
-
 import React from 'react'
 import Axios from 'axios'
 // import { barchart } from '../modules/charts'
@@ -16,7 +15,8 @@ export default class Index extends React.Component {
   }
 
   /**
-  * Funtion makes a GET request to given url 
+  * @title Data retrieval from RDW
+  * @description Funtion that does a GET request to the given URL 
   * @param {String} url - API endpoint
   */
   async getData(url) {
@@ -28,12 +28,6 @@ export default class Index extends React.Component {
 
     let parkingSpaces = await this.getData('https://opendata.rdw.nl/resource/m9d7-ebf2.json')
     console.log(parkingSpaces)
-    // let disabledAreas = filterDisabled(parkingSpaces, 1)
-    
-    // // Piechart
-    // let totalDisabledSpaces = disabledAreas.length
-    // let totalNormalSpaces = parkingSpaces.length
-    // console.log(totalNormalSpaces)
   }
 
   render() {
