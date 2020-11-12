@@ -34,4 +34,4 @@ yarn-error.log*
 .vercel
 
 # sub folder functional programming
-/secret-data
+survey-assignment/secret_data
