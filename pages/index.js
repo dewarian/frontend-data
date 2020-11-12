@@ -17,56 +17,56 @@ export default class Index extends React.Component {
       }
     }
 
-    /**
-     * @title Data retrieval from RDW
-     * @description Funtion that does a GET request to the given URL 
-     * @param {String} url - API endpoint
-     */
-    async getData(url) {
-      return await Axios.get(url).then(response => response.data)
+      
+async matchData() {
+      const vehicleData = await Axios.get('https://opendata.rdw.nl/resource/m9d7-ebf2.json?$$app_token=LJJQ0jJhibQnVu2Blj8el7nEE').then(response => response.data);
+      const fuelTypeData = await Axios.get('https://opendata.rdw.nl/resource/8ys7-d773.json?$$app_token=LJJQ0jJhibQnVu2Blj8el7nEE').then(response => response.data);
+      // map > find > filter
+      const result = vehicleData.map((vehicle) => {
+        combineData = fuelTypeData.find(() => {
+          vehicle.kenteken == fuelTypeData.kenteken
+        });
+        return vehicle 
+      })
+      return await result;
     }
+
 
     async componentDidMount() {
       console.warn('mounted')
 
-      let parkingSpaces = await this.getData('https://opendata.rdw.nl/resource/m9d7-ebf2.json')
-      // console.log(filterDataOnColumn(parkingSpaces, 'kenteken'))
-      let mixedData = combineDatasets()
-      const specificData = [];
-      mixedData.then((result) => {
-        let newArray = [];
-        result.forEach(element => {
-          specificData.push({
-            merk: element.merk,
-            kenteken: element.kenteken.kenteken,
-            soort: element.voertuigsoort,
-            brandstof: element.kenteken.brandstof_omschrijving,
-            taxi: element.taxi_indicator
-          })
+      const vehicleData = await Axios.get('https://opendata.rdw.nl/resource/m9d7-ebf2.json?$$app_token=LJJQ0jJhibQnVu2Blj8el7nEE').then(response => response.data);
+      const fuelTypeData = await Axios.get('https://opendata.rdw.nl/resource/8ys7-d773.json?$$app_token=LJJQ0jJhibQnVu2Blj8el7nEE').then(response => response.data);
+      const specificdata = [];
+      vehicleData.forEach(element => {
+        specificdata.push({
+          merk: element.merk,
+          kenteken: element.kenteken,
+          voertuigsoort: element.voertuigsoort,
+          // brandstof: 
         })
-        mixedData = specificData;
-        console.log(specificData)
-      })
-      mixedData.then(result => {
-        result.map(key => console.log(key.merk, key.kenteken))
-      })
+      });
 
-      async function combineDatasets() {
-        const vehicleData = await Axios.get('https://opendata.rdw.nl/resource/m9d7-ebf2.json?$$app_token=LJJQ0jJhibQnVu2Blj8el7nEE').then(response => response.data);
-        const fuelTypeData = await Axios.get('https://opendata.rdw.nl/resource/8ys7-d773.json?$$app_token=LJJQ0jJhibQnVu2Blj8el7nEE').then(response => response.data);
-
-        const vehicles = await vehicleData;
-        const fuelType = await fuelTypeData;
-
-        const result = vehicles.map((vehicle) => {
-          const combineData = fuelType.find(() =>
-            vehicles.kenteken == fuelType.kenteken
-          );
-          vehicle.kenteken = combineData;
-          return vehicle
-        })
-        return await result;
-      }
+      const test = this.matchData()
+      console.log(test)
+      console.log(fuelTypeData)
+      console.log(specificdata)
+    //   mixedData.then((result) => {
+    //     result.forEach(element => {
+    //       specificData.push({
+    //         merk: element.merk,
+    //         kenteken: element.kenteken.kenteken,
+    //         soort: element.voertuigsoort,
+    //         brandstof: element.kenteken.brandstof_omschrijving,
+    //         taxi: element.taxi_indicator
+    //       })
+    //     })
+    //     mixedData = specificData;
+    //     console.log(specificData)
+    //   })
+    //   mixedData.then(result => {
+    //     result.map(key => console.log(key.merk, key.kenteken))
+    //   })
 
     }
     render() {
