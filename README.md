@@ -8,11 +8,13 @@
 
 ## Introduction
 
->**[Project is still a Work in Progress]**
+>**[Project is still a Work in Progress] || Status: Below minimum**
 
 This project visualizes data from the [RDW](https://www.rdw.nl/) to help the journalists from [de Volkskrant](https://www.volkskrant.nl/) with their next big scoop about _the cars in the city_ **focusing on how the Netherlands improve their electric transportation**.
 
 Thus this project depends on the data from [opendata RDW](https://opendata.rdw.nl/). To understand what kind of data this organization delivers, please read the [wiki](https://github.com/dewarian/frontend-data/wiki) or visit their website.
+
+[Link to the deployed project](bommezijn.me)
 
 To know more about my process through this project, please visit the [wiki](https://github.com/dewarian/frontend-data/wiki).
 

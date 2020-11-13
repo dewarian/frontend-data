@@ -39,6 +39,7 @@ async matchData() {
     async componentDidMount() {
       console.warn('mounted')
 
+
       const vehicleData = await Axios.get('https://opendata.rdw.nl/resource/m9d7-ebf2.json?$$app_token=LJJQ0jJhibQnVu2Blj8el7nEE').then(response => response.data);
       const fuelTypeData = await Axios.get('https://opendata.rdw.nl/resource/8ys7-d773.json?$$app_token=LJJQ0jJhibQnVu2Blj8el7nEE').then(response => response.data);
       const specificdata = [];
@@ -55,8 +56,9 @@ async matchData() {
         .then((result) =>{
           console.log(result);
         })
-      // console.log(fuelTypeData)
-      // console.log(specificdata)
+        console.log(specificdata)
+        // console.log(fuelTypeData)
+        // console.log(vehicleData)
 
 
     //   mixedData.then((result) => {
