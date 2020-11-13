@@ -67,4 +67,5 @@ This project wouldn't have been possible without help from others; throughout th
 
 
 ## License
-[MIT](/LICENSE)
+This repository is licensed as [MIT](/LICENSE) by [Nathan Bommezijn](https://github.com/dewarian), 2020.
+
