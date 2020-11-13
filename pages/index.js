@@ -2,7 +2,7 @@ import React from 'react'
 import Axios from 'axios'
 import {
   filterDataOnColumn
-} from "./modules/utilities";
+} from "../components/modules/utilities";
 // import { barchart } from '../modules/charts'
 // import { filterDisabled } from '../modules/util'
 
