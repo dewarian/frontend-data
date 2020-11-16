@@ -114,6 +114,16 @@
   height: 1em;
 }
 
+.link {
+  font-size: 1.5rem;
+}
+
+.link:hover {
+  font-weight: bold;
+  color: #883677;
+  text-decoration: underline;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
