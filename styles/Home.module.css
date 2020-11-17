@@ -120,7 +120,7 @@
 
 .link:hover {
   font-weight: bold;
-  color: #883677;
+  color: var(--glaucous);
   text-decoration: underline;
 }
 

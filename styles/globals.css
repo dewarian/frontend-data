@@ -1,3 +1,13 @@
+/* CSS HEX */
+:root {
+  --green-munsell: #21a179ff;
+  --tart-orange: #ff4242ff;
+  --raisin-black: #2a2d34ff;
+  --ghost-white: #f8f7ffff;
+  --glaucous: #657ed4ff;
+  --maximum-yellow-red: #ffc857ff;
+}
+
 html,
 body {
   padding: 0;
