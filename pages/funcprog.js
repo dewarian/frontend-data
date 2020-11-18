@@ -3,23 +3,17 @@ import React from 'react'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
-export default class Index extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        data: {
-          state: true,
-          results: ['loading']
-        }
-      }
-    }
 
 async componentDidMount() {
     console.warn('mounted')
     // const dataset = getData('https://opendata.rdw.nl/resource/m9d7-ebf2.json')
     // dataset.then((result)=> {console.log(result.data)})
-
 }
+
+export default function funcProg() {
+    
+}
+
 render() {
     const resultView = 
     <div className={styles.container}>

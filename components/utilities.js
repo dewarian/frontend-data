@@ -1,7 +1,12 @@
-import Axios from "axios";
+import axios from "axios";
 
+/**
+ * @title getData from API
+ * @description Axios powered API function. Using 
+ * @param {*} url 
+ */
 export async function getData(url) {
-  const data = Axios.get(url, {
+  const data = axios.get(url, {
       responseType: 'json'
     })
     .then(result => {
@@ -10,6 +15,9 @@ export async function getData(url) {
   return await data
 }
 
+export async function cleanData(data) {
+
+}
 
 /**
  * @title Filter data on a specified column
