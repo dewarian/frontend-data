@@ -15,8 +15,9 @@ export async function getData(url) {
   return await data
 }
 
-export async function cleanData(data) {
-
+// Function that iterates through the array of objects. 
+export function cleanData(data) {
+  data.map()
 }
 
 /**

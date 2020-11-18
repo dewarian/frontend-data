@@ -1,10 +1,10 @@
 import Head from 'next/head'
-import React from 'react'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
-
+import { getData } from '../components/utilities'
 
 export default function FuncProg() {
+    getData('https://opendata.rdw.nl/resource/m9d7-ebf2.json')
     return (
         <div className={styles.container}>
         <Head>
