@@ -4,19 +4,9 @@ import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
 
-async componentDidMount() {
-    console.warn('mounted')
-    // const dataset = getData('https://opendata.rdw.nl/resource/m9d7-ebf2.json')
-    // dataset.then((result)=> {console.log(result.data)})
-}
-
-export default function funcProg() {
-    
-}
-
-render() {
-    const resultView = 
-    <div className={styles.container}>
+export default function FuncProg() {
+    return (
+        <div className={styles.container}>
         <Head>
             <title>Create Next App</title>
             <link rel="icon" href="/favicon.ico" />
@@ -35,10 +25,5 @@ render() {
             </div>
         </main>
     </div>
-    const loadView = <div> <h1> Loading </h1> </div>
-
-    return ( <> {
-        this.state.data.state ? resultView : loadView
-        } </>)
-    }
+    )
 }
