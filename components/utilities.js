@@ -2,22 +2,23 @@ import axios from "axios";
 
 /**
  * @title getData from API
- * @description Axios powered API function. Using 
- * @param {*} url 
+ * @description Axios powered API function. Using
+ * @param {*} url
  */
 export async function getData(url) {
-  const data = axios.get(url, {
-      responseType: 'json'
-    })
-    .then(result => {
-      console.log(result.data)
-    })
-  return await data
+    const data = axios
+        .get(url, {
+            responseType: "json"
+        })
+        .then((result) => {
+            console.log(result.data);
+        });
+    return await data;
 }
 
-// Function that iterates through the array of objects. 
+// Function that iterates through the array of objects.
 export function cleanData(data) {
-  data.map()
+    data.map();
 }
 
 /**
@@ -27,24 +28,22 @@ export function cleanData(data) {
  * @param {string} column string value based on the dataset
  */
 export function filterDataOnColumn(dataset, column) {
-  return dataset.map(result => result[column]);
+    return dataset.map((result) => result[column]);
 }
 
 export async function combineDatasets(datasetOne, datasetTwo) {
-  const vehicleData = await fetch('https://opendata.rdw.nl/resource/m9d7-ebf2.json');
-  const fuelTypeData = await fetch('https://opendata.rdw.nl/resource/8ys7-d773.json');
+    const vehicleData = await fetch("https://opendata.rdw.nl/resource/m9d7-ebf2.json");
+    const fuelTypeData = await fetch("https://opendata.rdw.nl/resource/8ys7-d773.json");
 
-  const vehicles = await vehicleData.json();
-  const fuelType = await fuelTypeData.json();
+    const vehicles = await vehicleData.json();
+    const fuelType = await fuelTypeData.json();
 
-  const result = vehicles.map((vehicle) => {
-    const combineData = fuelType.find(() =>
-      vehicles.kenteken == fuelType.kenteken
-    );
-    vehicle.kenteken = combineData;
-    return vehicle
-  })
-  return result;
+    const result = vehicles.map((vehicle) => {
+        const combineData = fuelType.find(() => vehicles.kenteken == fuelType.kenteken);
+        vehicle.kenteken = combineData;
+        return vehicle;
+    });
+    return result;
 }
 
 /* 

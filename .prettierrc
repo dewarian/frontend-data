@@ -1,0 +1,10 @@
+{
+    "semi": true,
+    "tabWidth": 4,
+    "printWidth": 100,
+    "trailingComma": "none",
+    "jsxBracketSameLine": true,
+    {
+        "files": "./**/*.{js,jsx,ts,tsx,css,md,json}"
+    }
+}

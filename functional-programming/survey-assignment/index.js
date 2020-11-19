@@ -1,12 +1,12 @@
 // Initializing variables that need to be hoisted
-const dataSet = require('./secret_data/Survey_Information_Design_clean-parsed.json');
-const filteredDataSet = filterDataOnColumn(dataSet, 'geboorteplaats');
+const dataSet = require("./secret_data/Survey_Information_Design_clean-parsed.json");
+const filteredDataSet = filterDataOnColumn(dataSet, "geboorteplaats");
 
 /* Return specific data value from element and column */
 /**
  * @name getSpecificDataValue
  * @description Retrieves single value based on specificied column and key.
- * @param {*} key 
+ * @param {*} key
  * @param {*} value Column specified, is equal to name in CSV.
  */
 /* 
@@ -38,9 +38,8 @@ Common shit throughout the data:
  * @param {*} column key name
  */
 function filterDataOnColumn(data, column) {
-  return data.map(result => result[column])
+    return data.map((result) => result[column]);
 }
-
 
 /**
  * @title Empty string removal
@@ -49,19 +48,20 @@ function filterDataOnColumn(data, column) {
  * Assigned to a variable.
  */
 const scrubData = filteredDataSet.filter((el) => {
-  return el
-})
-
+    return el;
+});
 
 const cleanData = scrubData.map((location) => {
-  return location
-  .replace('(', '')
-  .replace(')', '')
-  // .replace(/([\.]*.[^.]*)/, ',')
-  // .replace(/(\d{3})\./, ',')
-  // .replace(/((\d{0})\.)/, ',')
-  .replace(/\.?((\d{0})\.)\s/, ', ')
-  // .replace(/\.?(\d+.\d+(°.*)?)(.\s+|-)(\d+.\d+(°.*)?)\.?/, ',')
-})
+    return (
+        location
+            .replace("(", "")
+            .replace(")", "")
+            // .replace(/([\.]*.[^.]*)/, ',')
+            // .replace(/(\d{3})\./, ',')
+            // .replace(/((\d{0})\.)/, ',')
+            .replace(/\.?((\d{0})\.)\s/, ", ")
+    );
+    // .replace(/\.?(\d+.\d+(°.*)?)(.\s+|-)(\d+.\d+(°.*)?)\.?/, ',')
+});
 
-console.log(cleanData)
+console.log(cleanData);
