@@ -6,6 +6,7 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
+        "cleanup": "eslint --fix . prettier --write . --config ./.prettierrc",
         "lint": "eslint --fix .",
         "format": "prettier --write . --config ./.prettierrc"
     },
