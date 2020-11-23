@@ -2,11 +2,11 @@ import Head from "next/head";
 import Link from "next/link";
 import React from "react";
 
-import { cleanData } from "../modules/utilities";
+import { getData } from "../modules/utilities";
 import styles from "../styles/Home.module.css";
 
 export default function FuncProg() {
-    cleanData();
+
     return (
         <div className={styles.container}>
             <Head>

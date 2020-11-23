@@ -5,11 +5,11 @@ const vehicleFuelData = "https://opendata.rdw.nl/resource/8ys7-d773.json";
 
 /**
  * @title getData from API
- * @description Axios powered API function. Using
+ * @description Axios powered API function. Setting a specific limit as 1000 hits wont result to anything.
  * @param {*} url
  */
 export async function getData(url) {
-    return await axios.get(url).then((response) => response.data);
+    return await axios.get(url, {params: {$limit: 5000}}).then((response) => response.data);
 }
 
 const compareValue = (value, secondValue = undefined) => {
@@ -20,9 +20,14 @@ const compareValue = (value, secondValue = undefined) => {
 export function cleanData() {
     const vehicle = getData(vehicleData);
     const vehicleFuel = getData(vehicleFuelData);
+    let newArray = []
 
-    let transformedData = vehicle.data;
-    return console.log(transformedData);
+    vehicle.then(result => {
+      result.map((element) => {
+        newArray.push(element.kenteken)
+      })
+    });
+    return console.log(`this is a test ${newArray}`);
 }
 
 /**
